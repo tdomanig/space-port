@@ -1,4 +1,3 @@
-import { Stack } from "@mantine/core";
 import React from "react";
 import { Head } from "./header";
 import { RocketsPage } from "../../features/list-rockets";

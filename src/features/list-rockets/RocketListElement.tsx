@@ -8,7 +8,9 @@ type RocketListProps = {
 export const RocketListELement = ({ data }: RocketListProps) => {
   return (
     <tr>
-      <td>{data.name}</td>
+      <td>
+        <Anchor>{data.name}</Anchor>
+      </td>
       <td>{data.company}</td>
 
       <td>{data.cost_per_launch}</td>
