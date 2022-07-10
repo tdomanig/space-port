@@ -3,22 +3,6 @@ import { Text, Table } from "@mantine/core";
 import { Rocketdetail } from "../../common/hooks/useRocketsdetail";
 import { RocketDetailListELement } from "./detailListElement";
 
-export type RocketDetailType = {
-  company: string;
-  cost_per_launch: number;
-  name: string;
-  country: string;
-  id: string;
-  wikipedia: string;
-};
-
-type userType = {
-  name: string;
-  rocket: string;
-  timestamp: string;
-  twitter: string;
-};
-
 export const RocketsDetailPage = () => {
   const { data } = Rocketdetail();
 
@@ -29,15 +13,13 @@ export const RocketsDetailPage = () => {
           <th>Name</th>
           <th>Comapny</th>
           <th>CostbyLaunch</th>
-
           <th>Country</th>
+          <th>Wikipedia</th>
         </tr>
       </thead>
       <tbody>
         {" "}
-        {data.map((element: RocketDetailType) => {
-          return <RocketDetailListELement data={element} key={element.id} />;
-        })}
+        <RocketDetailListELement data={data} />
       </tbody>
     </Table>
   ) : (

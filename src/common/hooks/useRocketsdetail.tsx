@@ -9,7 +9,7 @@ export const useRockets = () => {
 
 export const Rocketdetail = () => {
   return useQuery({
-    queryKey: "rockets",
+    queryKey: "rocket",
     queryFn: getRocket,
   });
 };
@@ -24,7 +24,7 @@ const getUsers = async () => {
     body: JSON.stringify({
       query: `
         query Users {
-          users {
+          users(where: {rocket:{eq: "falcon1"}}) {
             name
             rocket
             timestamp
@@ -48,11 +48,12 @@ const getRocket = async () => {
     },
     body: JSON.stringify({
       query: `
-          query Rockets {
+          query Rocket {
             rocket(id:"falcon1") {
                 id
                 active
                 company
+                name
                 cost_per_launch
                 country
                 description
@@ -63,6 +64,6 @@ const getRocket = async () => {
     }),
   });
   const responseJson = await response.json();
-  console.log(responseJson.data.rocket);
+
   return responseJson.data.rocket;
 };
