@@ -1,12 +1,19 @@
 import React from "react";
 import { Text, Table } from "@mantine/core";
-import { Rocketdetail, useRockets } from "../../common/hooks/useRocketsdetail";
-import { RocketDetailListELement, Users } from "./detailListElement";
-
+import { Rocketdetail } from "../../common/hooks/useRocketsdetail";
+import { UserDetails } from "../../common/hooks/use-userdetails";
+import { RocketDetailListELement } from "./detailListElement";
+import { Users } from "./userListElement";
+export type userType = {
+  name: string;
+  rocket: string;
+  timestamp: string;
+  twitter: string;
+};
 export const RocketsDetailPage = () => {
-  const { data } = Rocketdetail();
-  const { userData } = useRockets();
-  return data && userData ? (
+  const { data: rocket } = Rocketdetail();
+  const { data: userData } = UserDetails();
+  return rocket ? (
     <>
       <Table striped highlightOnHover verticalSpacing="xs">
         <thead>
@@ -20,9 +27,10 @@ export const RocketsDetailPage = () => {
         </thead>
         <tbody>
           {" "}
-          <RocketDetailListELement data={data} />
+          <RocketDetailListELement data={rocket} />
         </tbody>
       </Table>
+
       <Table striped highlightOnHover verticalSpacing="xs">
         <thead>
           <tr>
@@ -34,7 +42,9 @@ export const RocketsDetailPage = () => {
         </thead>
         <tbody>
           {" "}
-          <Users userData={userData} />
+          {userData.map((element: userType) => {
+            return <Users userData={element} key={element.name} />;
+          })}
         </tbody>
       </Table>
     </>

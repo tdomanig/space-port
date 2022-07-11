@@ -7,17 +7,18 @@ type RocketListProps = {
 };
 
 export const RocketListELement = ({ data }: RocketListProps) => {
-  const test = "rocketdetail/" + data.id;
+  const { id, name, company, cost_per_launch, country } = data;
+  const test = "rocketdetail/" + id;
   return (
     <tr>
       <td>
-        <Anchor href={test}>{data.name}</Anchor>
+        <Anchor href={test}>{name}</Anchor>
       </td>
-      <td>{data.company}</td>
+      <td>{company}</td>
 
-      <td>{data.cost_per_launch}</td>
+      <td>{cost_per_launch}</td>
 
-      <td>{data.country}</td>
+      <td>{country}</td>
     </tr>
   );
 };
