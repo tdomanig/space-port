@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, Table, Space } from "@mantine/core";
+import { Text, Table, Space, Button, Anchor } from "@mantine/core";
 import { Rocketdetail } from "../../common/hooks/useRocketsdetail";
 import { UserDetails } from "../../common/hooks/use-userdetails";
 import { RocketDetailListELement } from "./detailListElement";
@@ -51,6 +51,10 @@ export const RocketsDetailPage = () => {
           })}
         </tbody>
       </Table>
+      <Space h={50}></Space>
+      <Button color="grape">
+        <Anchor href="addUser/">Add new User</Anchor>
+      </Button>
     </>
   ) : (
     <Text color="red">No Data</Text>
