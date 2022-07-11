@@ -8,8 +8,9 @@ type useraddType = {
   twitter: string;
   timestamp: string;
 };
-export const AddUser = (values: useraddType) => {
+export const addUser = (values: useraddType) => {
   const { id, name, timestamp, twitter } = values;
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   return useQuery({
     queryKey: "insert_users",
     queryFn: async () => {
