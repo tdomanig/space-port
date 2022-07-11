@@ -3,6 +3,7 @@ import { Anchor } from "@mantine/core";
 
 type DetailListProps = {
   data: RocketDetailType;
+  userdata: userType;
 };
 
 export type RocketDetailType = {
@@ -33,16 +34,13 @@ export const RocketDetailListELement = ({ data }: DetailListProps) => {
     </tr>
   );
 };
-export const RocketDetailListELement = ({ userdata }: DetailListProps) => {
+export const userData = ({ userdata }: DetailListProps) => {
   return (
     <tr>
-      <td>{data.name}</td>
-      <td>{data.company}</td>
-      <td>{data.cost_per_launch}</td>
-      <td>{data.country}</td>
-      <td>
-        <Anchor href={data.wikipedia}>{data.wikipedia}</Anchor>
-      </td>
+      <td>{userdata.name}</td>
+      <td>{userdata.rocket}</td>
+      <td>{userdata.timestamp}</td>
+      <td>{userdata.twitter}</td>
     </tr>
   );
 };
