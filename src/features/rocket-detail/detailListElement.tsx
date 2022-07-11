@@ -33,3 +33,16 @@ export const RocketDetailListELement = ({ data }: DetailListProps) => {
     </tr>
   );
 };
+export const RocketDetailListELement = ({ userdata }: DetailListProps) => {
+  return (
+    <tr>
+      <td>{data.name}</td>
+      <td>{data.company}</td>
+      <td>{data.cost_per_launch}</td>
+      <td>{data.country}</td>
+      <td>
+        <Anchor href={data.wikipedia}>{data.wikipedia}</Anchor>
+      </td>
+    </tr>
+  );
+};

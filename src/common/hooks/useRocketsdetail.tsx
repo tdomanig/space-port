@@ -2,9 +2,33 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 
 export const useRockets = () => {
+  const id = useParams();
   return useQuery({
     queryKey: "users",
-    queryFn: getUsers,
+    queryFn: async () => {
+      const url = "https://api.spacex.land/graphql";
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          query: `
+            query Users {
+              users(where: {rocket:{eq: "${id.rocketDetailId}"}}) {
+                name
+                rocket
+                timestamp
+                twitter
+              }
+            }
+          `,
+        }),
+      });
+
+      const responseJson = await response.json();
+      return responseJson.data.rockets;
+    },
   });
 };
 
@@ -42,29 +66,4 @@ export const Rocketdetail = () => {
       return responseJson.data.rocket;
     },
   });
-};
-
-const getUsers = async () => {
-  const url = "https://api.spacex.land/graphql";
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      query: `
-        query Users {
-          users(where: {rocket:{eq: "falcon1"}}) {
-            name
-            rocket
-            timestamp
-            twitter
-          }
-        }
-      `,
-    }),
-  });
-
-  const responseJson = await response.json();
-  return responseJson.data.rockets;
 };
