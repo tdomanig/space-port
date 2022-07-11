@@ -5,6 +5,7 @@ import { Anchor } from "@mantine/core";
 type RocketListProps = {
   data: RocketElement;
 };
+
 export const RocketListELement = ({ data }: RocketListProps) => {
   const test = "rocketdetail/" + data.id;
   return (

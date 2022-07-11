@@ -1,9 +1,12 @@
 import React from "react";
 import { Anchor } from "@mantine/core";
 
-type DetailListProps = {
+type DetailRocketProps = {
   data: RocketDetailType;
-  userdata: userType;
+};
+
+type DetailUserProps = {
+  userData: userType;
 };
 
 export type RocketDetailType = {
@@ -21,26 +24,28 @@ type userType = {
   timestamp: string;
   twitter: string;
 };
-export const RocketDetailListELement = ({ data }: DetailListProps) => {
+export const RocketDetailListELement = ({ data }: DetailRocketProps) => {
+  const { name, company, cost_per_launch, country, wikipedia } = data;
   return (
     <tr>
-      <td>{data.name}</td>
-      <td>{data.company}</td>
-      <td>{data.cost_per_launch}</td>
-      <td>{data.country}</td>
+      <td>{name}</td>
+      <td>{company}</td>
+      <td>{cost_per_launch}</td>
+      <td>{country}</td>
       <td>
-        <Anchor href={data.wikipedia}>{data.wikipedia}</Anchor>
+        <Anchor href={wikipedia}>{wikipedia}</Anchor>
       </td>
     </tr>
   );
 };
-export const userData = ({ userdata }: DetailListProps) => {
+export const Users = ({ userData }: DetailUserProps) => {
+  const { name, rocket, timestamp, twitter } = userData;
   return (
     <tr>
-      <td>{userdata.name}</td>
-      <td>{userdata.rocket}</td>
-      <td>{userdata.timestamp}</td>
-      <td>{userdata.twitter}</td>
+      <td>{name}</td>
+      <td>{rocket}</td>
+      <td>{timestamp}</td>
+      <td>{twitter}</td>
     </tr>
   );
 };

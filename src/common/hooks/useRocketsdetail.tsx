@@ -27,7 +27,8 @@ export const useRockets = () => {
       });
 
       const responseJson = await response.json();
-      return responseJson.data.rockets;
+      const userData = responseJson.data.data;
+      return userData;
     },
   });
 };
