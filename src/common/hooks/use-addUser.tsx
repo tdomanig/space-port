@@ -1,9 +1,15 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 
-export const AddUser = () => {
-  const id = useParams();
+type useraddType = {
+  id: string;
+  name: string;
 
+  twitter: string;
+  timestamp: string;
+};
+export const AddUser = (values: useraddType) => {
+  const { id, name, timestamp, twitter } = values;
   return useQuery({
     queryKey: "insert_users",
     queryFn: async () => {
@@ -17,7 +23,7 @@ export const AddUser = () => {
           query: `
                 query insert_Users {
                   insert_users{
-                    insert_users(objects: {id: "", name: "", rocket: ${id.rocketDetailId}, timestamp: "", twitter: ""})
+                    insert_users(objects: {id: "${id}", name: "${name}", rocket: "falcon1", timestamp: "${timestamp}", twitter: "${twitter}"})
                   } {
                     name
                     rocket

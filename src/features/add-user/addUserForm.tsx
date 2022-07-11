@@ -1,25 +1,22 @@
 import { useForm } from "@mantine/form";
 import { TextInput, Group, Button, Box } from "@mantine/core";
+import { AddUser } from "../../common/hooks/use-addUser";
 
-type useraddType = {
-  id: string;
-  name: string;
-  rocket: string;
-  twitter: string;
-  timestamp: string;
-};
 export const UserForm = () => {
   const form = useForm({
     initialValues: {
+      id: "grüße",
       name: "",
       twitter: "",
+      rocket: "falcon1",
+      timestamp: "Hiaz",
     },
   });
 
   return (
     <Box sx={{ maxWidth: 340 }} mx="auto">
       <h2>Add user to : falcon1</h2>
-      <form onSubmit={form.onSubmit((values) => console.log(values))}>
+      <form onSubmit={form.onSubmit((values) => AddUser(values))}>
         <TextInput
           label="Name"
           placeholder="Name"
