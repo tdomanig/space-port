@@ -28,9 +28,7 @@ export const RocketDetailListELement = ({ data }: DetailListProps) => {
       <td>{data.cost_per_launch}</td>
       <td>{data.country}</td>
       <td>
-        <Anchor>
-          <a href={data.wikipedia}>{data.wikipedia}</a>
-        </Anchor>
+        <Anchor href={data.wikipedia}>{data.wikipedia}</Anchor>
       </td>
     </tr>
   );

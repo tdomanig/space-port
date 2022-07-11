@@ -11,15 +11,13 @@ export const AppRouter = () => {
           element={
             <>
               <Layout />
-              <RocketsDetailPage />
             </>
           }
-        >
-          <Route
-            path="rocketdetail/:rocketDettailId"
-            element={<RocketsDetailPage />}
-          />
-        </Route>
+        ></Route>
+        <Route
+          path="rocketdetail/:rocketDetailId"
+          element={<RocketsDetailPage />}
+        />
       </Routes>
     </BrowserRouter>
   );

@@ -6,10 +6,11 @@ type RocketListProps = {
   data: RocketElement;
 };
 export const RocketListELement = ({ data }: RocketListProps) => {
+  const test = "rocketdetail/" + data.id;
   return (
     <tr>
       <td>
-        <Anchor>{data.name}</Anchor>
+        <Anchor href={test}>{data.name}</Anchor>
       </td>
       <td>{data.company}</td>
 
