@@ -1,4 +1,3 @@
-import React from "react";
 import { Text, Table, Space, Button, Anchor } from "@mantine/core";
 import { Rocketdetail } from "../../common/hooks/useRocketsdetail";
 import { UserDetails } from "../../common/hooks/use-userdetails";

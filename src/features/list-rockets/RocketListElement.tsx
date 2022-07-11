@@ -1,5 +1,4 @@
 import { RocketElement } from ".";
-import React from "react";
 import { Anchor } from "@mantine/core";
 
 type RocketListProps = {
