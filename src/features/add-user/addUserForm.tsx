@@ -1,6 +1,13 @@
 import { useForm } from "@mantine/form";
 import { TextInput, Group, Button, Box } from "@mantine/core";
 
+type useraddType = {
+  id: string;
+  name: string;
+  rocket: string;
+  twitter: string;
+  timestamp: string;
+};
 export const UserForm = () => {
   const form = useForm({
     initialValues: {
