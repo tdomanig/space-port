@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, Table } from "@mantine/core";
+import { Text, Table, Space } from "@mantine/core";
 import { Rocketdetail } from "../../common/hooks/useRocketsdetail";
 import { UserDetails } from "../../common/hooks/use-userdetails";
 import { RocketDetailListELement } from "./detailListElement";
@@ -15,6 +15,8 @@ export const RocketsDetailPage = () => {
   const { data: userData } = UserDetails();
   return rocket ? (
     <>
+      <Space h={10}></Space>
+      <h3>Rocketdetails:</h3>
       <Table striped highlightOnHover verticalSpacing="xs">
         <thead>
           <tr>
@@ -30,7 +32,9 @@ export const RocketsDetailPage = () => {
           <RocketDetailListELement data={rocket} />
         </tbody>
       </Table>
-
+      <Space h={50}></Space>
+      <h3>Users:</h3>
+      <Space h={50}></Space>
       <Table striped highlightOnHover verticalSpacing="xs">
         <thead>
           <tr>
