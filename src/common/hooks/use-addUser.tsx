@@ -1,15 +1,13 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 
-type useraddType = {
-  id: string;
+export type useraddType = {
   name: string;
 
   twitter: string;
-  timestamp: string;
 };
 export const addUser = (values: useraddType) => {
-  const { id, name, timestamp, twitter } = values;
+  const { name, twitter } = values;
   // eslint-disable-next-line react-hooks/rules-of-hooks
   return useQuery({
     queryKey: "insert_users",
@@ -24,7 +22,7 @@ export const addUser = (values: useraddType) => {
           query: `
                 query insert_Users {
                   insert_users{
-                    insert_users(objects: {id: "${id}", name: "${name}", rocket: "falcon1", timestamp: "${timestamp}", twitter: "${twitter}"})
+                    insert_users(objects: {id: "Seawas", name: "${name}", rocket: "falcon1", timestamp: , twitter: "${twitter}"})
                   } {
                     name
                     rocket
