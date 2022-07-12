@@ -1,41 +1,32 @@
-import { useQuery } from "react-query";
+import { gql } from "graphql-request";
+import { useMutation, useQueryClient } from "react-query";
+import { graphqlClient } from "../graphql-client";
 
 export type useraddType = {
   name: string;
-
+  rocket: string;
   twitter: string;
 };
-export const addUser = (values: useraddType) => {
-  const { name, twitter } = values;
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  return useQuery({
-    queryKey: "insert_users",
-    queryFn: async () => {
-      const url = "https://api.spacex.land/graphql";
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          query: `
-                query insert_Users {
-                  insert_users{
-                    insert_users(objects: {id: "Seawas", name: "${name}", rocket: "falcon1", timestamp: , twitter: "${twitter}"})
-                  } {
-                    name
-                    rocket
-                    timestamp
-                    twitter
-                  }
-                }
-              `,
-        }),
-      });
 
-      const responseJson = await response.json();
+const document = gql`
+  mutation InsertUser($name: String!, $rocket: String!, $twitter: String!) {
+    insert_users(objects: { name: $name, rocket: $rocket, twitter: $twitter }) {
+      returning {
+        id
+      }
+    }
+  }
+`;
 
-      return responseJson.data.users;
+export const useAddUser = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (variables: useraddType) => {
+      const data = await graphqlClient.request(document, variables);
+      return data.insert_users.returning.id;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["users"]);
     },
   });
 };

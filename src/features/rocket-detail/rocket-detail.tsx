@@ -4,7 +4,7 @@ import { UserDetails } from "../../common/hooks/use-userdetails";
 import { RocketDetailListELement } from "./detailListElement";
 import { Users } from "./userListElement";
 import { SendForm } from "../add-user/addUserForm";
-import { addUser } from "../../common/hooks/use-addUser";
+import { useAddUser } from "../../common/hooks/use-addUser";
 
 export type userType = {
   name: string;
@@ -13,9 +13,10 @@ export type userType = {
   twitter: string;
 };
 export const RocketsDetailPage = () => {
-  const { data: rocket } = Rocketdetail();
+  const { data: rocketData } = Rocketdetail();
   const { data: userData } = UserDetails();
-  return rocket ? (
+  const { mutate: addingUser } = useAddUser();
+  return rocketData ? (
     <>
       <Space h={10}></Space>
       <h3>Rocketdetails:</h3>
@@ -31,7 +32,7 @@ export const RocketsDetailPage = () => {
         </thead>
         <tbody>
           {" "}
-          <RocketDetailListELement data={rocket} />
+          <RocketDetailListELement data={rocketData} />
         </tbody>
       </Table>
       <Space h={50}></Space>
@@ -59,7 +60,8 @@ export const RocketsDetailPage = () => {
       </Button>
       <SendForm
         onSubmit={(values) => {
-          addUser({ ...values });
+          const rocket: string = rocketData.id;
+          addingUser({ ...values, rocket });
         }}
       ></SendForm>
     </>
