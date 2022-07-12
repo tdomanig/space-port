@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 
 export type useraddType = {

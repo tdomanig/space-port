@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { TextInput, Group, Button, Box } from "@mantine/core";
+import { TextInput, Button, Box } from "@mantine/core";
 import { useraddType } from "../../common/hooks/use-addUser";
 
 type UserFormProps = {
@@ -7,12 +7,7 @@ type UserFormProps = {
 };
 
 export const SendForm = ({ onSubmit }: UserFormProps) => {
-  const {
-    handleSubmit,
-    register,
-    reset,
-    formState: { isSubmitSuccessful },
-  } = useForm<useraddType>();
+  const { handleSubmit, register } = useForm<useraddType>();
   return (
     <Box sx={{ maxWidth: 340 }} mx="auto">
       <h2>Add user to : falcon1</h2>

@@ -3,6 +3,9 @@ import { Rocketdetail } from "../../common/hooks/useRocketsdetail";
 import { UserDetails } from "../../common/hooks/use-userdetails";
 import { RocketDetailListELement } from "./detailListElement";
 import { Users } from "./userListElement";
+import { SendForm } from "../add-user/addUserForm";
+import { addUser } from "../../common/hooks/use-addUser";
+
 export type userType = {
   name: string;
   rocket: string;
@@ -54,6 +57,11 @@ export const RocketsDetailPage = () => {
       <Button color="grape">
         <Anchor href="addUser/">Add new User</Anchor>
       </Button>
+      <SendForm
+        onSubmit={(values) => {
+          addUser({ ...values });
+        }}
+      ></SendForm>
     </>
   ) : (
     <Text color="red">No Data</Text>
